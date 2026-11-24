@@ -41,7 +41,7 @@ export default function Hero({ ready }) {
 
           <h1 className="font-display text-[clamp(4.2rem,11vw,9.5rem)] font-normal leading-[0.88] tracking-[-0.02em] text-wine">
             <MaskLine play={ready} delay={0.25}>
-              Albert
+              <span className="italic">Albert</span>
             </MaskLine>
             <MaskLine play={ready} delay={0.4} className="pl-[0.55em]">
               <span className="mr-[0.22em] font-script text-[0.82em] leading-none text-rose">&amp;</span>
