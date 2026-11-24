@@ -10,7 +10,7 @@ export const VENUE = {
   place: 'Potta, Chalakudy',
   full: 'LF Convention Centre, Potta, Chalakudy, Kerala',
   mapsUrl:
-    'https://maps.app.goo.gl/z3eQsyobRhc2967M9'),
+    'https://maps.app.goo.gl/z3eQsyobRhc2967M9',
 }
 
 // Times are IST (UTC+05:30). start/end are UTC for calendar files.
