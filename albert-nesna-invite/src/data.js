@@ -1,8 +1,8 @@
 export const COUPLE = { groom: 'Albert', bride: 'Nesna' }
 
 export const FAMILIES = {
-  groom: { relation: 'Son of', parents: 'Mr. Johnson & Mrs. Moly', house: 'Manjaly House' },
-  bride: { relation: 'Daughter of', parents: 'Mr. Joy & Mrs. Moly', house: 'Thakkolkkaran House' },
+  groom: { relation: 'Son of', parents: 'Mr. Johnson & Mrs. Molly', house: 'Manjaly House' },
+  bride: { relation: 'Daughter of', parents: 'Mr. Joy & Mrs. Molly', house: 'Thakkolkkaran House' },
 }
 
 export const VENUE = {
