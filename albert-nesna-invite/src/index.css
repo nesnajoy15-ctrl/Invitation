@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #faf6f0;
+  --color-paper-deep: #f1e8dc;
+  --color-ink: #2e2522;
+  --color-ink-soft: #594a44;
+  --color-rose: #9c2a3a;
+  --color-rose-soft: #e9b9bf;
+  --color-wine: #561c2c;
+  --color-wine-deep: #3f1220;
+  --color-sage: #7d8b69;
+  --color-gold: #a8895c;
+
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-script: "Great Vibes", cursive;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+html,
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-rose-soft);
+  color: var(--color-wine-deep);
+}
+
+/* Paper grain over everything, very faint */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.27 0 0 0 0 0.22 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Soft warm glow so the off-white never feels flat */
+.paper-glow {
+  background:
+    radial-gradient(60rem 40rem at 85% 10%, rgb(233 205 200 / 0.3), transparent 60%),
+    radial-gradient(50rem 36rem at 5% 85%, rgb(241 232 220 / 0.9), transparent 65%),
+    var(--color-paper);
+}
+
+/* Falling petals: constant motion, so linear */
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(var(--drift), 50vh, 0) rotate(200deg);
+  }
+  100% {
+    transform: translate3d(calc(var(--drift) * -0.4), 112vh, 0) rotate(420deg);
+  }
+}
+
+.petal {
+  position: absolute;
+  top: 0;
+  animation: petal-fall var(--dur) linear infinite;
+  animation-delay: var(--delay);
+  will-change: transform;
+}
+
+/* Bouquets breathe a little, like a breeze through them */
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(1.2deg);
+  }
+}
+
+.sway {
+  animation: sway 9s ease-in-out infinite;
+}
+
+@keyframes hint {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.hint {
+  animation: hint 2.6s ease-in-out infinite;
+}
+
+/* Pressable things */
+.press {
+  transition:
+    transform 160ms var(--ease-out-strong),
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease;
+}
+
+.press:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-line:hover {
+    background-color: var(--color-wine);
+    border-color: var(--color-wine);
+    color: var(--color-paper);
+  }
+  .btn-solid:hover {
+    background-color: var(--color-rose);
+  }
+  .btn-ghost-light:hover {
+    background-color: var(--color-paper);
+    color: var(--color-wine);
+  }
+}
+
+.outline-num {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-rose);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petal,
+  .sway,
+  .hint {
+    animation: none;
+  }
+  .petal {
+    display: none;
+  }
+}
