@@ -51,25 +51,20 @@ export function RoseCorner({ corner = 'tl', flip = false, fadeEdges = false, pla
   return (
     <motion.div ref={ref} style={{ y }} className={`pointer-events-none select-none ${className}`} aria-hidden="true">
       {/* slow breeze sway, pivoting on the corner the bouquet grows from */}
-      <div className="sway" style={{ transformOrigin: `${ox} ${oy}` }}>
-        <motion.img
-          src={SRC[corner]}
-          alt=""
-          draggable="false"
-          decoding="async"
-          {...anim}
-          style={{
-            transformOrigin: `${ox} ${oy}`,
-            ...(fadeEdges && {
-              maskImage: FADE[corner],
-              WebkitMaskImage: FADE[corner],
-              maskComposite: 'intersect',
-              WebkitMaskComposite: 'source-in',
-            }),
-          }}
-          className={`block h-auto w-full ${flip ? '-scale-x-100' : ''} ${imgClassName}`}
-        />
-      </div>
+ <div className="sway" style={{ transformOrigin: `${ox} ${oy}` }}>
+{/* Mirror on its own wrapper so it pivots on the centre and stays in place. */}
+<div className={flip ? '-scale-x-100' : undefined}>
+<motion.img
+src={SRC[corner]}
+{...anim}
+style={{
+transformOrigin: ORIGIN[corner].join(' '), // was: `${ox} ${oy}`
+...(fadeEdges && { maskImage: FADE[corner], /* … */ }),
+}}
+className={`block h-auto w-full ${imgClassName}`} // flip class removed from here
+/>
+</div>
+</div>
     </motion.div>
   )
 }
