@@ -37,7 +37,7 @@ function Family({ label, name, fam, className = '' }) {
 
 export default function Invitation() {
   return (
-    <section id="invite" className="relative px-6 py-32 md:px-10 md:py-48">
+    <section id="invite" className="relative overflow-x-clip px-6 py-32 md:px-10 md:py-48">
       <RoseCorner
         corner="tl"
         flip
