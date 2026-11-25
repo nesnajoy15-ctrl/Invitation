@@ -47,7 +47,7 @@ function Arch() {
 
 export default function Venue() {
   return (
-    <section id="venue" className="relative px-6 py-32 md:px-10 md:py-48">
+    <section id="venue" className="relative overflow-x-clip px-6 py-32 md:px-10 md:py-48">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-20 md:grid-cols-12 md:gap-8">
         <div className="md:col-span-6 md:col-start-1">
           <FadeUp>
